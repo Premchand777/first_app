@@ -3,8 +3,8 @@
 // import flutter pkgs
 import 'package:flutter/material.dart';
 
-// import dart pkgs
-import 'dart:math';
+// import project pkgs
+import 'package:first_app/dice.roller.dart';
 
 // import project pkgs
 // import 'package:first_app/custom_styles/text_style_cws/teal_accent_variation_1.dart';
@@ -53,8 +53,6 @@ class GradientContainerCW extends StatelessWidget { // stateless widgets are imm
     // Dart caches the objects specified by const. So it will reference cached objects at run time by saving memory.
     const endAlignment = Alignment.bottomRight;
 
-    var defaultDice = 'assets/dice-images/dice-1.png';
-
     return Container( // widget
       decoration: BoxDecoration( // configuration
         gradient: LinearGradient( // configuration
@@ -63,72 +61,10 @@ class GradientContainerCW extends StatelessWidget { // stateless widgets are imm
           colors: gradientColors,
         ),
       ),
-      child: Center( // widget
+      child: const Center( // widget
         // child: TealAccentVariation1('Welcome, Premchand'),
         // child: TealAccentVariation1.welcomeText2('Welcome, K Premchand'),
-        child: Column( // widget
-          mainAxisAlignment: MainAxisAlignment.center, // configuration
-          children: [ // widget
-            Image.asset(
-              defaultDice,
-              width: 200,
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            // ElevatedButton(
-            //   onPressed: () {},
-            //   style: const ButtonStyle(
-            //     backgroundColor: MaterialStatePropertyAll(
-            //       Color.fromARGB(208, 32, 4, 79),
-            //     ),
-            //     shadowColor: MaterialStatePropertyAll(
-            //       Color.fromARGB(208, 108, 96, 128),
-            //     ),
-            //     fixedSize: MaterialStatePropertyAll(
-            //       Size(170, 20),
-            //     ),
-            //   ),
-            //   child: const Text(
-            //     'Roll',
-            //     style: TextStyle(
-            //       color: Colors.white,
-            //     ),
-            //   ),
-            // ),
-
-            TextButton(
-              onPressed: () {
-                var randomNumber = Random().nextInt(6) + 1;
-                print('Clicked.. $randomNumber');
-                // generate a random number from 1 to 6
-                // substitute the new random number in a string & update the dice image
-                defaultDice = 'assets/dice-images/dice-$randomNumber.png';
-              },
-              style: TextButton.styleFrom(
-                backgroundColor: const Color.fromARGB(226, 17, 3, 40),
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 60,
-                  right: 60,
-                ),
-                shadowColor: const Color.fromARGB(194, 194, 165, 241),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(45),
-                ),
-                elevation: 2.5,
-              ),
-              child: const Text(
-                'Roll',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-          ],
-        ),
+        child: DiceRoller()
       ),
     );
   }
